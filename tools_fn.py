@@ -153,7 +153,7 @@ def function_call_evaluator(function_name, function_args ):
             endpoint=function_args.get("endpoint", "/health"),
             timeout=function_args.get("timeout", 5)
         )
-    elif function_name == "process_image":
+    elif function_name == "generate":
         function_response = process_image(
             prompt=function_args.get("prompt"),
             endpoint_url=function_args.get("endpoint_url", ""),

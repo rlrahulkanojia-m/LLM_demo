@@ -133,7 +133,8 @@ def main():
     # Initialize conversation history in session state if it doesn't exist
     if 'conversation' not in st.session_state:
         st.session_state.conversation = [
-            {"role": "system", "content": SYSTEM_PROMPT}
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "assistant", "content": "Welcome to Modelia AI! I'm here to help with your fashion automation needs. How can I assist you today?"}
         ]
     
     # Initialize show_image_upload flag in session state if it doesn't exist
@@ -145,34 +146,34 @@ def main():
         st.session_state.current_uploaded_file = None
     
     # Main content area
-    with st.container():
-        st.markdown('<div class="main-content">', unsafe_allow_html=True)
+    # with st.container():
+        # st.markdown('<div class="main-content">', unsafe_allow_html=True)
         
-        # Toggle for image operations
-        show_image_tools = st.checkbox("Show image tools", value=st.session_state.show_image_upload)
+        ## Toggle for image operations
+        # show_image_tools = st.checkbox("Show image tools", value=st.session_state.show_image_upload)
         
-        # Update session state based on checkbox
-        if show_image_tools != st.session_state.show_image_upload:
-            st.session_state.show_image_upload = show_image_tools
-            # Force a rerun to update UI
-            st.rerun()
+        ## Update session state based on checkbox
+        # if show_image_tools != st.session_state.show_image_upload:
+        #     st.session_state.show_image_upload = show_image_tools
+        #     # Force a rerun to update UI
+        #     st.rerun()
         
-        # Only show image upload and related tools if enabled
-        if st.session_state.show_image_upload:
-            # File upload section
-            st.markdown("Let's enhance your images", unsafe_allow_html=True)
-            uploaded_file = st.file_uploader("+ Attach", type=["jpg", "jpeg", "png"])
+        # # Only show image upload and related tools if enabled
+        # if st.session_state.show_image_upload:
+        #     # File upload section
+        #     st.markdown("Let's enhance your images", unsafe_allow_html=True)
+        #     uploaded_file = st.file_uploader("+ Attach", type=["jpg", "jpeg", "png"])
             
-            # Store the uploaded file in session state
-            if uploaded_file:
-                st.session_state.current_uploaded_file = uploaded_file
+        #     # Store the uploaded file in session state
+        #     if uploaded_file:
+        #         st.session_state.current_uploaded_file = uploaded_file
                 
-                # Show the image preview
-                st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+        #         # Show the image preview
+        #         st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
                 
-            # Show processed image if available
-            if 'processed_image' in st.session_state and st.session_state.processed_image is not None:
-                st.image(st.session_state.processed_image, caption="Processed Image", use_column_width=True)
+        #     # Show processed image if available
+        #     if 'processed_image' in st.session_state and st.session_state.processed_image is not None:
+        #         st.image(st.session_state.processed_image, caption="Processed Image", use_column_width=True)
             
             # Action buttons (displayed but not functional for now)
             # st.markdown('<div class="action-buttons">', unsafe_allow_html=True)
@@ -189,9 +190,9 @@ def main():
             # with col5:
             #     st.button("Enhance", disabled=True)
                 
-            st.markdown('</div>', unsafe_allow_html=True)
+            # st.markdown('</div>', unsafe_allow_html=True)
         
-        st.markdown('</div>', unsafe_allow_html=True)
+        # st.markdown('</div>', unsafe_allow_html=True)
     
     # Display conversation history
     for message in st.session_state.conversation:
@@ -211,8 +212,8 @@ def main():
     
     # User input
     with st.form(key="message_form", clear_on_submit=True):
-        user_input = st.text_input("Type your message...", key="user_input")
-        submit_button = st.form_submit_button("Send")
+        user_input = st.text_input("", key="user_input")
+        submit_button = st.form_submit_button("Send", use_container_width=True, icon=":material/send:")
     
     # Process user input when form is submitted
     if submit_button and user_input:
