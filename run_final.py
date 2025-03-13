@@ -1,14 +1,15 @@
 import streamlit as st
-import os
 import json
-import requests
 from openai import AzureOpenAI
 import base64
 
 from environment import *
 from tools_fn import *
 from tools_definations import tools
-from utils import apply_custom_css
+from utils import *
+
+add_bg_image('background.jpg')
+
 
 # Initialize the Azure OpenAI client
 client = AzureOpenAI(

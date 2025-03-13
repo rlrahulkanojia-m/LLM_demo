@@ -1,3 +1,4 @@
+import base64
 import streamlit as st
 
 # Custom CSS to match the provided image design
@@ -121,3 +122,20 @@ def apply_custom_css():
     }
     </style>
     """, unsafe_allow_html=True)
+
+def add_bg_image(image_file):
+    with open(image_file, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+    
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url(data:image/{"png" if image_file.name.endswith("png") else "jpg"};base64,{encoded_string});
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
