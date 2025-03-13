@@ -5,10 +5,10 @@ import requests
 from openai import AzureOpenAI
 import base64
 
-from backend.environment import *
-from backend.tools_fn import *
-from backend.tools_definations import tools
-from backend.utils import apply_custom_css
+from environment import *
+from tools_fn import *
+from tools_definations import tools
+from utils import apply_custom_css
 
 # Initialize the Azure OpenAI client
 client = AzureOpenAI(
